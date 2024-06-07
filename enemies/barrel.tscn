@@ -1,0 +1,108 @@
+[gd_scene load_steps=17 format=3 uid="uid://bpuwth257mjt0"]
+
+[ext_resource type="Script" path="res://enemies/enemy.gd" id="1_jqvfd"]
+[ext_resource type="PackedScene" uid="uid://bxyg1m4krdqj3" path="res://misc/barrel_explosion.tscn" id="2_kttaf"]
+[ext_resource type="PackedScene" uid="uid://cj6fwpr8im500" path="res://misc/meat.tscn" id="3_sfapc"]
+[ext_resource type="Texture2D" uid="uid://dqjhx0d42mp8w" path="res://addons/Tiny Swords/Factions/Goblins/Troops/Barrel/Blue/Barrel_Blue.png" id="4_si3r4"]
+[ext_resource type="Script" path="res://enemies/behaviors/follow_player.gd" id="5_h8mg0"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_s57xt"]
+atlas = ExtResource("4_si3r4")
+region = Rect2(0, 0, 128, 128)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_xnej3"]
+atlas = ExtResource("4_si3r4")
+region = Rect2(0, 384, 128, 128)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_otk52"]
+atlas = ExtResource("4_si3r4")
+region = Rect2(0, 256, 128, 128)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_r2b2c"]
+atlas = ExtResource("4_si3r4")
+region = Rect2(0, 128, 128, 128)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_3bcvm"]
+atlas = ExtResource("4_si3r4")
+region = Rect2(128, 128, 128, 128)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_7haq7"]
+atlas = ExtResource("4_si3r4")
+region = Rect2(256, 128, 128, 128)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_h67os"]
+atlas = ExtResource("4_si3r4")
+region = Rect2(384, 128, 128, 128)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_wc43q"]
+atlas = ExtResource("4_si3r4")
+region = Rect2(512, 128, 128, 128)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_nngi4"]
+atlas = ExtResource("4_si3r4")
+region = Rect2(640, 128, 128, 128)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_7ojqg"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_s57xt")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_xnej3")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_otk52")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_r2b2c")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_3bcvm")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_7haq7")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_h67os")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_wc43q")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_nngi4")
+}],
+"loop": true,
+"name": &"run",
+"speed": 10.0
+}]
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_83ptm"]
+radius = 14.0
+height = 49.9998
+
+[node name="Barrel" type="CharacterBody2D" groups=["enemies"]]
+motion_mode = 1
+script = ExtResource("1_jqvfd")
+health = 2
+death_prefab = ExtResource("2_kttaf")
+drop_items = Array[PackedScene]([ExtResource("3_sfapc")])
+drop_chances = Array[float]([0.3])
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+position = Vector2(-1, -16)
+sprite_frames = SubResource("SpriteFrames_7ojqg")
+animation = &"run"
+autoplay = "run"
+frame_progress = 0.238692
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(4.83169e-13, 2)
+rotation = 1.57346
+shape = SubResource("CapsuleShape2D_83ptm")
+
+[node name="FollowPlayer" type="Node" parent="."]
+script = ExtResource("5_h8mg0")
+
+[node name="DamageDigitMarker" type="Marker2D" parent="."]
+position = Vector2(-1, -45)

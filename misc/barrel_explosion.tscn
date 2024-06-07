@@ -1,0 +1,94 @@
+[gd_scene load_steps=15 format=3 uid="uid://bxyg1m4krdqj3"]
+
+[ext_resource type="Texture2D" uid="uid://dqjhx0d42mp8w" path="res://addons/Tiny Swords/Factions/Goblins/Troops/Barrel/Blue/Barrel_Blue.png" id="1_8e5df"]
+[ext_resource type="Texture2D" uid="uid://dcwf0qqvtbbml" path="res://addons/Tiny Swords/Effects/Explosion/Explosions.png" id="2_cvs7i"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_64tu6"]
+atlas = ExtResource("1_8e5df")
+region = Rect2(0, 640, 128, 128)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_j7ucj"]
+atlas = ExtResource("1_8e5df")
+region = Rect2(128, 640, 128, 128)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_l2no6"]
+atlas = ExtResource("1_8e5df")
+region = Rect2(256, 640, 128, 128)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_2g775"]
+atlas = ExtResource("2_cvs7i")
+region = Rect2(0, 0, 192, 192)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_4efsp"]
+atlas = ExtResource("2_cvs7i")
+region = Rect2(192, 0, 192, 192)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_1shkv"]
+atlas = ExtResource("2_cvs7i")
+region = Rect2(384, 0, 192, 192)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ijw1p"]
+atlas = ExtResource("2_cvs7i")
+region = Rect2(576, 0, 192, 192)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_bbau7"]
+atlas = ExtResource("2_cvs7i")
+region = Rect2(768, 0, 192, 192)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_35p05"]
+atlas = ExtResource("2_cvs7i")
+region = Rect2(960, 0, 192, 192)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_mvi5u"]
+atlas = ExtResource("2_cvs7i")
+region = Rect2(1152, 0, 192, 192)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_71cy5"]
+atlas = ExtResource("2_cvs7i")
+region = Rect2(1344, 0, 192, 192)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_ovynf"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_64tu6")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_j7ucj")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_l2no6")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_2g775")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_4efsp")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_1shkv")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ijw1p")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_bbau7")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_35p05")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_mvi5u")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_71cy5")
+}],
+"loop": false,
+"name": &"default",
+"speed": 10.0
+}]
+
+[node name="BarrelExplosion" type="AnimatedSprite2D"]
+sprite_frames = SubResource("SpriteFrames_ovynf")
+autoplay = "default"
+frame_progress = 0.299692

@@ -1,0 +1,134 @@
+[gd_scene load_steps=21 format=3 uid="uid://d3dvm6n5woy0w"]
+
+[ext_resource type="Script" path="res://enemies/behaviors/follow_player.gd" id="1_k6x1t"]
+[ext_resource type="Script" path="res://enemies/enemy.gd" id="1_l5kue"]
+[ext_resource type="PackedScene" uid="uid://ecpwnp3vjawa" path="res://misc/skull.tscn" id="2_gudor"]
+[ext_resource type="Texture2D" uid="uid://0ixa3cnwslqd" path="res://addons/Tiny Swords/Factions/Goblins/Troops/Torch/Purple/Torch_Purple.png" id="3_grmsk"]
+[ext_resource type="PackedScene" uid="uid://cj6fwpr8im500" path="res://misc/meat.tscn" id="3_lwra6"]
+[ext_resource type="PackedScene" uid="uid://b6rbi8jm0e2wd" path="res://misc/gold_meat.tscn" id="5_d7cxa"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_0nlyi"]
+atlas = ExtResource("3_grmsk")
+region = Rect2(0, 384, 192, 192)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_tl326"]
+atlas = ExtResource("3_grmsk")
+region = Rect2(192, 384, 192, 192)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_jlg33"]
+atlas = ExtResource("3_grmsk")
+region = Rect2(384, 384, 192, 192)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_nccqd"]
+atlas = ExtResource("3_grmsk")
+region = Rect2(576, 384, 192, 192)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_7ak01"]
+atlas = ExtResource("3_grmsk")
+region = Rect2(768, 384, 192, 192)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_7i3go"]
+atlas = ExtResource("3_grmsk")
+region = Rect2(960, 384, 192, 192)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_6u2il"]
+atlas = ExtResource("3_grmsk")
+region = Rect2(0, 192, 192, 192)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_qko6b"]
+atlas = ExtResource("3_grmsk")
+region = Rect2(192, 192, 192, 192)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_uas51"]
+atlas = ExtResource("3_grmsk")
+region = Rect2(384, 192, 192, 192)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_1osid"]
+atlas = ExtResource("3_grmsk")
+region = Rect2(576, 192, 192, 192)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_fkd1p"]
+atlas = ExtResource("3_grmsk")
+region = Rect2(768, 192, 192, 192)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_4wluv"]
+atlas = ExtResource("3_grmsk")
+region = Rect2(960, 192, 192, 192)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_7ojqg"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_0nlyi")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_tl326")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_jlg33")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_nccqd")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_7ak01")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_7i3go")
+}],
+"loop": true,
+"name": &"attack",
+"speed": 8.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_6u2il")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_qko6b")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_uas51")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_1osid")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_fkd1p")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_4wluv")
+}],
+"loop": true,
+"name": &"run",
+"speed": 10.0
+}]
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_83ptm"]
+radius = 11.999
+height = 45.9699
+
+[node name="GoblinTorch" type="CharacterBody2D" groups=["enemies"]]
+motion_mode = 1
+script = ExtResource("1_l5kue")
+death_prefab = ExtResource("2_gudor")
+drop_chance = 0.2
+drop_items = Array[PackedScene]([ExtResource("3_lwra6"), ExtResource("5_d7cxa")])
+drop_chances = Array[float]([0.7, 0.3])
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+position = Vector2(-5.96046e-08, -37.8754)
+sprite_frames = SubResource("SpriteFrames_7ojqg")
+animation = &"attack"
+autoplay = "run"
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(1, -19)
+rotation = -1.58389
+shape = SubResource("CapsuleShape2D_83ptm")
+
+[node name="FollowPlayer" type="Node" parent="."]
+script = ExtResource("1_k6x1t")
+
+[node name="DamageDigitMarker" type="Marker2D" parent="."]
+position = Vector2(0, -70)

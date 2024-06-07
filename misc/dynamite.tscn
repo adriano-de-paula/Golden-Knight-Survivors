@@ -1,0 +1,71 @@
+[gd_scene load_steps=8 format=3 uid="uid://b6ehunu54y3r7"]
+
+[ext_resource type="Texture2D" uid="uid://m68svhul6wcq" path="res://addons/Tiny Swords/Factions/Goblins/Troops/TNT/Dynamite/Dynamite.png" id="1_jaejo"]
+[ext_resource type="Script" path="res://misc/ritual.gd" id="2_co7vk"]
+
+[sub_resource type="CanvasItemMaterial" id="CanvasItemMaterial_3m3no"]
+blend_mode = 1
+
+[sub_resource type="Animation" id="Animation_wb1re"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [0]
+}
+
+[sub_resource type="Animation" id="Animation_yehk2"]
+resource_name = "default"
+length = 0.8
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:frame")
+tracks/0/interp = 0
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.1, 0.2, 0.3, 0.4, 0.5, 0.6, 0.7),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1),
+"update": 1,
+"values": [0, 1, 2, 3, 4, 5, 6, 7]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_cq360"]
+_data = {
+"RESET": SubResource("Animation_wb1re"),
+"default": SubResource("Animation_yehk2")
+}
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_fvxy1"]
+radius = 1.45128
+height = 4.95417
+
+[node name="Dynamite" type="Sprite2D"]
+modulate = Color(1, 1, 0.980392, 0.8)
+material = SubResource("CanvasItemMaterial_3m3no")
+position = Vector2(0, 0.908289)
+scale = Vector2(2.73661, 2.68195)
+texture = ExtResource("1_jaejo")
+hframes = 8
+script = ExtResource("2_co7vk")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+"": SubResource("AnimationLibrary_cq360")
+}
+autoplay = "default"
+speed_scale = 1.5
+
+[node name="Area2D" type="Area2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
+rotation = 0.476883
+scale = Vector2(12.037, 12.4154)
+shape = SubResource("CapsuleShape2D_fvxy1")

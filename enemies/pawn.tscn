@@ -1,0 +1,135 @@
+[gd_scene load_steps=20 format=3 uid="uid://dqr5chau8pjj2"]
+
+[ext_resource type="Script" path="res://enemies/behaviors/follow_player.gd" id="1_k6x1t"]
+[ext_resource type="Script" path="res://enemies/enemy.gd" id="1_l5kue"]
+[ext_resource type="Texture2D" uid="uid://dcnqpxujr450g" path="res://addons/Tiny Swords/Factions/Knights/Troops/Pawn/Red/Pawn_Red.png" id="1_noee2"]
+[ext_resource type="PackedScene" uid="uid://ecpwnp3vjawa" path="res://misc/skull.tscn" id="2_gudor"]
+[ext_resource type="PackedScene" uid="uid://cj6fwpr8im500" path="res://misc/meat.tscn" id="3_5h0km"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_tlnqa"]
+atlas = ExtResource("1_noee2")
+region = Rect2(0, 384, 192, 192)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_k8el7"]
+atlas = ExtResource("1_noee2")
+region = Rect2(192, 384, 192, 192)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_8msj6"]
+atlas = ExtResource("1_noee2")
+region = Rect2(384, 384, 192, 192)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_g5d00"]
+atlas = ExtResource("1_noee2")
+region = Rect2(576, 384, 192, 192)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_rvi3x"]
+atlas = ExtResource("1_noee2")
+region = Rect2(768, 384, 192, 192)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ajgs0"]
+atlas = ExtResource("1_noee2")
+region = Rect2(960, 384, 192, 192)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_x7cjq"]
+atlas = ExtResource("1_noee2")
+region = Rect2(0, 192, 192, 192)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_snvq6"]
+atlas = ExtResource("1_noee2")
+region = Rect2(192, 192, 192, 192)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_yvfqu"]
+atlas = ExtResource("1_noee2")
+region = Rect2(384, 192, 192, 192)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_8lo8i"]
+atlas = ExtResource("1_noee2")
+region = Rect2(576, 192, 192, 192)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_6pv2d"]
+atlas = ExtResource("1_noee2")
+region = Rect2(768, 192, 192, 192)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_wrmsx"]
+atlas = ExtResource("1_noee2")
+region = Rect2(960, 192, 192, 192)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_7ojqg"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_tlnqa")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_k8el7")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_8msj6")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_g5d00")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_rvi3x")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ajgs0")
+}],
+"loop": true,
+"name": &"attack",
+"speed": 7.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_x7cjq")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_snvq6")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_yvfqu")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_8lo8i")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_6pv2d")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_wrmsx")
+}],
+"loop": true,
+"name": &"run",
+"speed": 9.0
+}]
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_83ptm"]
+radius = 13.0071
+height = 35.9842
+
+[node name="Pawn" type="CharacterBody2D" groups=["enemies"]]
+motion_mode = 1
+script = ExtResource("1_l5kue")
+health = 4
+death_prefab = ExtResource("2_gudor")
+drop_items = Array[PackedScene]([ExtResource("3_5h0km")])
+drop_chances = Array[float]([0.5])
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+position = Vector2(-2, -24)
+sprite_frames = SubResource("SpriteFrames_7ojqg")
+animation = &"attack"
+autoplay = "run"
+frame_progress = 0.50936
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(-3, -12)
+rotation = -1.56338
+shape = SubResource("CapsuleShape2D_83ptm")
+
+[node name="FollowPlayer" type="Node" parent="."]
+script = ExtResource("1_k6x1t")
+speed = 0.75
+
+[node name="DamageDigitMarker" type="Marker2D" parent="."]
+position = Vector2(-4, -53)
